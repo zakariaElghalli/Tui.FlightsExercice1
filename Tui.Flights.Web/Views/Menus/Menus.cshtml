@@ -1,0 +1,30 @@
+﻿@model List<Tui.Presentation.Models.Menu>
+
+@{
+    <ul id="navigation">
+        @foreach (Tui.Presentation.Models.Menu menu in Model)
+        {
+        <li>
+          
+
+            <a href="@(string.IsNullOrEmpty(menu.ActionName) ? "#" : Url.Action(menu.ActionName, menu.ControllerName ,new { area = menu.Area }))">@menu.LinkText</a>
+        </li>
+        }
+    </ul>
+}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#navigation li a").each(function () {
+            var var1 = window.location.href.toUpperCase();
+            var var2 = $(this).attr('href').toUpperCase();
+            if (var1.indexOf(var2) == -1) {
+                $(this).removeClass("active");
+            } else {
+                $(this).addClass("active");
+            }
+        });
+    });
+
+</script>

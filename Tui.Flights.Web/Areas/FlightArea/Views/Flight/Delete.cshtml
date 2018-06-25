@@ -1,0 +1,66 @@
+﻿@model Tui.Presentation.Models.FlightViewModel
+
+
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //var airports = (List<AirPortViewModel>)ViewBag.Airports;
+    //var airplaines = (List<AirPlaneViewModel>)ViewBag.AirPlanes;
+}
+
+<div class="container">
+
+    <h2>Delete</h2>
+
+    <form action="@Url.Action("deleteflight")" method="post" id="form-delete">
+
+        <input type="hidden" name="Id" value="@Model.Id" />
+        <input type="hidden" name="Distance" value="@Model.Distance" />
+        <input type="hidden" name="Duration" value="@Model.Duration" />
+        <input type="hidden" name="FuelConsumption" value="@Model.FuelConsumption" />
+        <input type="hidden" name="AddedDate" value="@Model.AddedDate" />
+        <input type="hidden" name="ModifiedDate" value="@Model.ModifiedDate" />
+        <div class="form-group">
+            <label class="control-label">Choose an aircraft</label>
+            <select class="form-control" name="AirPlaneId">
+                <option>--</option>
+                @foreach (var airplaine in Model.AirPlanes)
+                {
+                    var selected = airplaine.Id == Model.AirPlaneId;
+                    <option @(selected ? "selected" : string.Empty) value="@airplaine.Id">@airplaine.AirPlaneName</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">Choose a departure</label>
+            <select class="form-control" name="DepartureAirportId">
+                <option>--</option>
+                @foreach (var airport in Model.DeparturAeroports)
+                {
+                    var selected = airport.Id == Model.DepartureAirportId;
+                    <option @(selected ? "selected" : string.Empty) value="@airport.Id">@airport.NameAirport</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">Choose an arrival</label>
+            <select class="form-control" name="ArrivalAirportId">
+                <option>--</option>
+                @foreach (var airport in Model.ArrivalAeroports)
+                {
+                    var selected = airport.Id == Model.ArrivalAirportId;
+                    <option @(selected ? "selected" : string.Empty) value="@airport.Id">@airport.NameAirport</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <button type="button" class="btn btn-primary" id="btn-delete" data-redirect-url="@Url.Action("index")">Delete</button>
+        </div>
+
+    </form>
+
+</div>

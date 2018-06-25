@@ -1,0 +1,60 @@
+﻿@model Tui.Presentation.Models.FlightViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+   
+}
+
+<div class="container">
+
+    <h2>Add a new</h2>
+
+    <form action="@Url.Action("AddOrUpdateflight")" method="post" id="form-AddOrUpdate">
+        <div class="form-group">
+            <label class="control-label">Choose an aircraft</label>
+            <select class="form-control" name="AirPlaneId">
+                <option>--</option>
+                @foreach (var airPlane in Model.AirPlanes)
+                {
+                    <option value="@airPlane.Id">@airPlane.AirPlaneName</option>
+                }
+            </select>
+
+            @*@Html.ValidationMessageFor("AirPlaneId")*@
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">Choose a departure</label>
+            <select class="form-control" name="DepartureAirportId">
+                <option>--</option>
+                @foreach (var airport in Model.DeparturAeroports)
+                {
+                    <option value="@airport.Id">@airport.NameAirport</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">Choose an arrival</label>
+            <select class="form-control" name="ArrivalAirportId">
+                <option>--</option>
+                @foreach (var airport in Model.ArrivalAeroports)
+                {
+                    <option value="@airport.Id">@airport.NameAirport</option>
+                }
+            </select>
+        </div>
+
+
+
+
+   
+
+        <div class="form-group">
+            <button type="button" class="btn btn-primary" id="btn-addorupdate" data-redirect-url="@Url.Action("index")">Add</button>
+        </div>
+
+    </form>
+
+</div>

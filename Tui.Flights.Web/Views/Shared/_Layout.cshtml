@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/bundles/js")
+    <script src="~/Scripts/jquery-2.2.4.js"></script>
+</head>
+
+
+<body>
+
+    <div class="container" style="width:75%">
+        <div id="DivToAppendPartialView"></div>
+        <!-- header -->
+        <div class="row header">
+            <div class="col-md-2">
+                <img style="margin-top: 30px;" src="@Url.Content("~/images/tuifly.png")" alt="tuifly" />
+            </div>
+            <div class="col-md-7">
+                <div class="row">
+                    <div class="col-md-8" style="padding-right:0px">
+                        @Html.Action("Menus", "Menus", new { area = "" })
+                    </div>
+                    <div class="col-md-4">
+                       
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <!-- body -->
+        <div class="row body">
+            <div style="margin-bottom: 15px;" class="col-md-12">
+                @RenderBody()
+            </div>
+        </div>
+
+        <!-- footer -->
+        <div class="row footer font-small">
+            <p>&copy; Tuifly @DateTime.Now.Year</p>
+        </div>
+
+    </div>
+    @Scripts.Render("~/bundles/js")
+    
+</body>
+
+
+
+
+
+</html>
